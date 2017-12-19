@@ -1,0 +1,28 @@
+{
+	"list":[
+		{
+			"index":"1",
+			"name":"菜单一",
+			"subNav":[{
+				"name":"子菜单",
+				"subNav":null
+			}]
+		},
+		{
+			"index":"2",
+			"name":"菜单二",
+			"subNav":[{
+				"name":"子菜单",
+				"subNav":null
+			}]
+		},
+		{
+			"index":"3",
+			"name":"菜单三",
+			"subNav":[{
+				"name":"子菜单",
+				"subNav":null
+			}]
+		}
+	]
+}

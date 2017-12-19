@@ -20,6 +20,7 @@ const createLintingRule = () => ({
 })
 
 module.exports = {
+  devtool:'eval-source-map',
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
