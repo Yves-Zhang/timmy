@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import ElementUI from 'Element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import 'font-awesome-sass/assets/stylesheets/_font-awesome.scss'
 
 import {
   Pagination,
