@@ -4,6 +4,7 @@ import Vue from 'vue'
 import store from './vuex/store'
 import App from './App'
 import router from './router'
+import Resource from 'vue-resource'
 import ElementUI from 'Element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome-sass/assets/stylesheets/_font-awesome.scss'
@@ -151,7 +152,7 @@ Vue.prototype.$prompt = MessageBox.prompt
 Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message
 
-
+Vue.use(Resource)
 
 
 

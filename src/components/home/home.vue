@@ -1,17 +1,22 @@
 <template>
 <div>
-<!-- 	<el-row class="tac">
-		<el-col :span="2">
-			<el-menu default-active="1" @open="handleOpen" @close="handleClose"  text-color="#fff" active-text-color="#545c64" class="leftNav">
-				<el-submenu :index="item.index" v-for="item in navList" :key="item.index">
-					<template slot="title">
-			            <i class="fa fa-file-text" style="margin-right:5px;"></i>
-			        	<span>{{item.name}}</span>
-			        </template>
-				</el-submenu>
-			</el-menu>
-		</el-col>
-	</el-row> -->
+	<el-menu
+	  :default-active="activeIndex2"
+	  class="el-menu-demo"
+	  mode="horizontal"
+	  @select="handleSelect"
+	  background-color="#545c64"
+	  text-color="#fff"
+	  active-text-color="#ffd04b">
+	  <el-menu-item :index="item.index" v-for="item in navList" :key="item.id" v-if="!item.subNav">{{item.name}}</el-menu-item>
+	  <el-submenu :index="item.index" v-else>
+	    <template slot="title">{{item.name}}</template>
+	    <el-menu-item :index="subItem.index" v-for="subItem in item.subNav" :key="subItem.id">{{subItem.name}}</el-menu-item>
+	  </el-submenu>
+	</el-menu>
+
+
+
 	<h3>{{count}}</h3>
 	<div>
 		<el-button type="primary" size="small" @click="countFuc('add')">+</el-button>
@@ -40,12 +45,15 @@ export default {
 	},
 	
 	created (){
-
+		console.log(this)
 	},
 	name:"home",
 	data (){
 		return {
-			navList:navList.list
+			activeIndex: '1',
+        	activeIndex2: '1',
+			navList:navList.list,
+			aaa:[1,2,3]
 		}
 	},
 	store,
@@ -57,6 +65,9 @@ export default {
 		handleClose(key,keyPath){
 			console.log(key,keyPath)
 		},
+		handleSelect(key, keyPath) {
+	        console.log(key, keyPath);
+	    },
 		countFuc(arg){
 			this.$store.commit(arg);
 		}
