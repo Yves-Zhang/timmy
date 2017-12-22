@@ -12,7 +12,7 @@
                 <el-form-item>
                   <el-select size="small" @change="getData" v-model="wardCode" placeholder="科室" v-if="equipment">
                     <el-option value="" label="全部"></el-option>
-                    <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+                    <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item>
@@ -70,7 +70,7 @@
                 <el-form-item>
                   <el-select size="small" @change="getData" v-model="wardCode" placeholder="科室">
                     <el-option value="" label="全部"></el-option>
-                    <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+                    <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item>
@@ -134,7 +134,7 @@
                 <el-form-item>
                   <el-select size="small" @change="getData" v-model="wardCode" placeholder="科室">
                     <el-option value="" label="全部"></el-option>
-                    <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+                    <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item>

@@ -4,7 +4,7 @@
     <div class="card-title" v-show="!isFull"><i class="icon iconfont icon-icons_infusion_list"></i> 输液监测列表</div>
     <!-- <i class="fa fa-tint"></i> --> 
     <div class="slide-controls" v-show="isFull">
-      <span :class="{active: num === currentPageNum + 1}" class="slide-controls_item" v-for="num in pageCount" :key="num"></span>
+      <span :class="{active: num === currentPageNum + 1}" class="slide-controls_item" v-for="num in pageCount" :key="num.id"></span>
     </div>
     <el-button class="full-btn" size="mini" style="margin-left: 10px;" type="default" @click="toggleFull" :class="{fl: isFull}">
       <i class="fa" :class="{'fa-expand': !isFull, 'fa-compress': isFull}"></i> {{isFull ? '退出全屏' : '全屏显示'}}
@@ -13,7 +13,7 @@
     <el-form v-show="!isFull" style="position: absolute;top:-4px;right: 240px;vertical-align: middle;" v-if="isadmin!='0'">
       <el-form-item>
         <el-select placeholder="选择病区" size="small" @change="getCode" v-model="wardCode">
-          <el-option v-for="item in $root.deptList" :label="item.name" :value="item.code"></el-option>
+          <el-option v-for="item in $root.deptList" :label="item.name" :value="item.code" :key="item.id"></el-option>
         </el-select>
       </el-form-item>
     </el-form>
@@ -45,8 +45,8 @@
       </div>
       <div class="rule-bedCode-wrap">
         <div class="inner-wrap">
-          <div class="rule-row" v-for="row in ruleData">
-            <div class="inner-item" v-for="item in row" :style="item.style">{{item.bedCode}}</div>
+          <div class="rule-row" v-for="row in ruleData" :key="row.id">
+            <div class="inner-item" v-for="item in row" :style="item.style" :key="item.id">{{item.bedCode}}</div>
           </div>
           <!-- <div class="inner-item" v-for="item in ruleData.area_b" :style="item.style">{{item.bedCode}}</div> -->
         </div>
@@ -58,27 +58,27 @@
 
     <!-- [start]原版显示版本 -->
     <div class="infusion-list" :style="{width: isFull ? 'calc(100% - 190px)' : '100%'}" v-if="fullVision=='old'">
-      <InfusionItem v-for="item in infusionList[currentPageNum]" class="infusion-item" :item="item" :goToDetail="goToDetail" :params="tvShowParams" :rowNum="currentPageRowNum" :isFull.sync="isFull" :total="infusionList[currentPageNum].length"></InfusionItem>
+      <InfusionItem v-for="item in infusionList[currentPageNum]" class="infusion-item" :item="item" :goToDetail="goToDetail" :params="tvShowParams" :rowNum="currentPageRowNum" :isFull.sync="isFull" :total="infusionList[currentPageNum].length" :key="item.id"></InfusionItem>
     </div>
     <!-- [end]原版显示版本 -->
 
 
     <!-- [start]通用版本 -->
     <div class="infusion-list" :style="{width: isFull ? 'calc(100% - 190px)' : '100%'}" v-if="fullVision=='common'" style="background: #fff">
-      <CommonInfusionItem v-for="item in infusionList[currentPageNum]" class="infusion-item" :item="item" :goToDetail="goToDetail" :params="tvShowParams" :rowNum="currentPageRowNum" :isFull.sync="isFull" :total="infusionList[currentPageNum].length"></CommonInfusionItem>
+      <CommonInfusionItem v-for="item in infusionList[currentPageNum]" class="infusion-item" :item="item" :goToDetail="goToDetail" :params="tvShowParams" :rowNum="currentPageRowNum" :isFull.sync="isFull" :total="infusionList[currentPageNum].length" :key="item.id"></CommonInfusionItem>
     </div>
     <!-- [end]通用版本 -->
 
     <!-- [start]通用深色版 -->
     <div class="infusion-list" :style="{width: isFull ? 'calc(100% - 190px)' : '100%',backgroundColor:'#999999'}" v-if="fullVision=='commonDarkColor'">
-      <CommonInfusionItemDarkColor v-for="item in infusionList[currentPageNum]" class="infusion-item" :item="item" :goToDetail="goToDetail" :params="tvShowParams" :rowNum="currentPageRowNum" :isFull.sync="isFull" :total="infusionList[currentPageNum].length"></CommonInfusionItemDarkColor>
+      <CommonInfusionItemDarkColor v-for="item in infusionList[currentPageNum]" class="infusion-item" :item="item" :goToDetail="goToDetail" :params="tvShowParams" :rowNum="currentPageRowNum" :isFull.sync="isFull" :total="infusionList[currentPageNum].length" :key="item.id"></CommonInfusionItemDarkColor>
     </div>
     <!-- [end]通用深色版 -->
 
 
         <!-- [start]完整数据显示版本 -->
     <div class="infusion-list" :style="{width: isFull ? 'calc(100% - 190px)' : '100%'}" v-if="fullVision=='fullVision'" style="background: #fff">
-      <FullVisionInfusionItem v-for="item in infusionList[currentPageNum]" class="infusion-item" :item="item" :goToDetail="goToDetail" :params="tvShowParams" :rowNum="currentPageRowNum" :isFull.sync="isFull" :total="infusionList[currentPageNum].length"></FullVisionInfusionItem>
+      <FullVisionInfusionItem v-for="item in infusionList[currentPageNum]" class="infusion-item" :item="item" :goToDetail="goToDetail" :params="tvShowParams" :rowNum="currentPageRowNum" :isFull.sync="isFull" :total="infusionList[currentPageNum].length" :key="item.id"></FullVisionInfusionItem>
     </div>
     <!-- [end]完整数据显示版本 -->
 
@@ -92,7 +92,7 @@
   <audio class="prompt-voice" src="/infusion/app/assets/sounds/02_Osmium_00.ogg" controls="controls" hidden="hidden"></audio>
   <!-- 床号语音报警音频 -->
   <div class="bed-alarm-voice">
-    <audio :class="`bed-voice-item_${bedCode.replace(/\+/,'_')}`" :src="`/infusion/app/assets/sounds/bed_voice/_${bedCode}.MP3`" controls="controls" hidden="hidden" v-for="bedCode in voiceBedList"></audio>
+    <audio :class="`bed-voice-item_${bedCode.replace(/\+/,'_')}`" :src="`/infusion/app/assets/sounds/bed_voice/_${bedCode}.MP3`" controls="controls" hidden="hidden" v-for="bedCode in voiceBedList" :key="bedCode.id"></audio>
   </div>
   <!-- 离开病区报警音频 -->
 <!--   <div class="bed-leave-voice">
@@ -107,17 +107,17 @@
     </div>
     <!-- <div class="map-bg" :style="{backgroundImage: 'url(/infusion/app/assets/images/components/map-black_192.png)'}"> -->
     <div class="map-bg" :style="mapStyle" style="background-color: #fff">
-      <div class="map-marker" v-for="location in callData" :style="setMarkerStyle(location)">
+      <div class="map-marker" v-for="location in callData" :style="setMarkerStyle(location)" :key="location.id">
         <div class="spread">
           <span class="spread__item"></span>
         </div>
       </div>
       <div class="leave-content" v-if="leaveData.length > 0">
-        <div v-for="bed in leaveData">{{bed.content.patInhosRecord.bedCode}}床，{{bed.content.patInhosRecord.patName}}</div>
+        <div v-for="bed in leaveData" :key="bed.id">{{bed.content.patInhosRecord.bedCode}}床，{{bed.content.patInhosRecord.patName}}</div>
         <div class="">离开病区</div>
       </div>
       <div class="leave-content" v-if="callData.length > 0">
-        <div v-for="call in callData">
+        <div v-for="call in callData" :key="call.id">
           {{call.content.room}}房，{{call.content.bindingUserName}} {{call && call.event === '0102' ? '请求医护支援' : '医护报警'}}
         </div>
       </div>
@@ -128,7 +128,7 @@
   <!-- 床头卡呼叫 -->
   <div class="bedCardWrap" v-show="isFull && bedCardList.length > 0">
     <div class="bedCard">
-      <span v-for="(item,index) in bedCardList">
+      <span v-for="(item,index) in bedCardList" :key="item.id">
         <span v-if="index!=0">、</span>{{item}}
       </span>
       <div class="bottomText">

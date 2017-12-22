@@ -12,7 +12,6 @@
 import Header from './layout/header/Header.vue';
 import Footer from './layout/footer/Footer.vue';
 
-require('./main.scss');
 
 export default {
   name: 'Main',

@@ -10,7 +10,7 @@
         <el-form-item v-if="isAdmin">
           <el-select size="small" @change="getData" v-model="queryParams.keyword" placeholder="病区">
             <el-option value="" label="全部"></el-option>
-            <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+            <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -106,12 +106,12 @@
       </el-form-item>
       <el-form-item label="病区" prop="deptCode" style="width: 280px;">
         <el-select size="small" name="deptCode" v-model="editForm.deptCode" placeholder="病区">
-          <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+          <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="床号" prop="bedCode" style="width: 200px;">
         <el-select size="small" name="bedCode" v-model="editForm.bedCode" placeholder="床号">
-          <el-option v-for="bedCode in activeBedList" :label="bedCode" :value="bedCode"></el-option>
+          <el-option v-for="bedCode in activeBedList" :label="bedCode" :value="bedCode" :key="bedCode.id"></el-option>
         </el-select>
       </el-form-item>
     </el-form>

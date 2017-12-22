@@ -125,7 +125,7 @@
         </el-form-item>
         <el-form-item label="所属病区" style="width: 280px;" prop="deptCode">
           <el-select size="small" v-model="editForm.deptCode" name="deptCode" placeholder="病区">
-            <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+            <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="药物编号" style="width: 320px;" prop="drugCode">

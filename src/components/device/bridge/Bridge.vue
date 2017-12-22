@@ -15,7 +15,7 @@
         <el-form-item>
           <el-select size="small" @change="getData" v-model="queryParams.deptCode" placeholder="病区">
             <el-option value="" label="全部"></el-option>
-            <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+            <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item style="width: 240px">
@@ -103,7 +103,7 @@
       </el-form-item>
       <el-form-item label="病区" prop="deptCode" style="width: 280px;">
         <el-select size="small" name="deptCode" v-model="settingForm.deptCode" placeholder="病区">
-          <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+          <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="MAC地址" style="width: 280px;" prop="flyOverDevAddress">

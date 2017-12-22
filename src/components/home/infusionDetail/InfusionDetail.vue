@@ -11,7 +11,7 @@
       输液监测器（设备号：{{data.deviceInfo.deviceSn}}，MAC地址：{{data.deviceInfo.macAddress}}，床号：{{data.bagInfo.bedCode}}，容器规格：{{data.bagInfo.spec_capacity}}ml）
       <div class="fr">
         <el-select size="mini" style="display: inline-block;" @change="changeCapacity" v-model="selectedBag">
-          <el-option v-for="bag in bagList" :value="bag" :label="`${bag.split('-')[0]}-${bag.split('-')[1]}ml`"></el-option>
+          <el-option v-for="bag in bagList" :value="bag" :label="`${bag.split('-')[0]}-${bag.split('-')[1]}ml`" :key="bag.id"></el-option>
         </el-select>
         <!-- <el-button type="primary" size="mini" @click="() => openSetting()">设置</el-button> -->
       </div>

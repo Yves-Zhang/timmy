@@ -53,7 +53,7 @@
         </el-form-item>
         <el-form-item label="所在病区" prop="ward_code" style="width: 280px;">
           <el-select size="small" name="ward_code" v-model="editForm.ward_code" placeholder="请选择病区" required>
-            <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+            <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
           </el-select>
         </el-form-item>
 

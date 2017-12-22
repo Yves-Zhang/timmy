@@ -207,11 +207,11 @@
             <el-col :span="12">
               <el-select size="small" name="configOwner" v-model="editForm.configOwner" placeholder="请选择病区" disabled v-if="able">
                 <el-option label="全院" value="DEFAULT"></el-option>
-                <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+                <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
               </el-select>
               <el-select size="small" name="configOwner" v-model="editForm.configOwner" placeholder="请选择病区" v-if="!able">
                 <el-option label="全院" value="DEFAULT"></el-option>
-                <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+                <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
               </el-select>
             </el-col>
           </el-form-item>

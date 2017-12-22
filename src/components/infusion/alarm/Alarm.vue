@@ -9,7 +9,7 @@
           <el-form-item v-if="isAdmin">
             <el-select size="small" v-model="queryParams.deptCode" placeholder="病区">
               <el-option value="" label="全部"></el-option>
-              <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code"></el-option>
+              <el-option v-for="dept in $root.deptList" :label="dept.name" :value="dept.code" :key="dept.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>

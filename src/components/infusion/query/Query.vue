@@ -119,14 +119,14 @@
       </el-col>
     </el-row>
     <el-row :gutter="20">
-      <el-col :span="4" v-for="item in data.listMaterial">
+      <el-col :span="4" v-for="item in data.listMaterial" :key="item.id">
         <div class="grid-content">
           {{item.material}}总计：{{item.materialCount}}
         </div>
       </el-col>
     </el-row>
     <el-row :gutter="20">
-      <el-col :span="4" v-for="item in data.listSpecCapacity">
+      <el-col :span="4" v-for="item in data.listSpecCapacity" :key="item.id">
         <div class="grid-content">
           容量{{parseFloat(item.specCapacity)}}ml总计：{{item.specCapacityCount}}
         </div>
