@@ -1,0 +1,32 @@
+
+/* width */
+.w {
+  width: 1190px;
+  margin: 0 auto;
+  @include MQ($S) {
+    width: 990px;
+  }
+  //@include clearfix();
+}
+
+.full {
+  width: 100%;
+}
+
+/* float */
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.grid-content {
+  margin: 10px 0;
+}
+
+.line {
+  text-align: center;
+  line-height: 28px;
+}

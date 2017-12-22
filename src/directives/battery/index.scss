@@ -1,0 +1,56 @@
+@import "../../style/variable";
+$battery-width: 36px;
+$battery-height: 16px;
+
+.battery-icon-wrap {
+  position: relative;
+  display: block;
+  height: $battery-height;
+  width: $battery-width;
+  line-height: $battery-height;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    .battery-text {
+      opacity: 1;
+    }
+
+    .battery-vol {
+      opacity: 0;
+    }
+  }
+}
+
+.battery-icon {
+  position: absolute;
+  background: url('/infusion/app/assets/images/icon/battery.png') no-repeat;
+  opacity: .6;
+  display: block;
+  width: $battery-width;
+  height: $battery-height;
+  background-size: contain;
+  z-index: 3;
+}
+
+.battery-vol {
+  position: absolute;
+  display: block;
+  height: 12px;
+  left: 2px;
+  top: 2px;
+  z-index: 4;
+  opacity: 1;
+  transition: all .2s ease-in-out;
+}
+
+.battery-text {
+  position: absolute;
+  width: $battery-width;
+  height: $battery-height;
+  left: -50%;
+  transform: translateX(50%);
+  z-index: 6;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+}

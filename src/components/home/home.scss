@@ -1,6 +1,511 @@
-.el-menu--horizontal{
-	border-bottom:none!important;
+@import "../../style/variable";
+
+.infusion-overview {
+  .card-header {
+    position: relative;
+    // overflow: hidden;
+  }
+
+  .full & {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+
+    .el-card__header {
+      height: 35px;
+      padding: 6px 10px;
+      background-color: $base-color;
+      color: #fff;
+
+      &:hover {
+        .full-btn {
+          opacity: 1;
+        }
+      }
+    }
+
+    .el-card__body {
+      padding: 0;
+      background-color: #cfcfd0;
+    }
+
+    .full-btn {
+      opacity: 0;
+      transition: all 0.2s;
+    }
+  }
 }
-.header{
-	background-color:#545C64;
+
+.infusion-overview-content {
+  min-height: 200px;
+  overflow: hidden;
+  @include clearfix();
+}
+
+.infusion-list {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100%;
+  align-content: flex-start;
+}
+
+.home-search-input {
+  position: absolute;
+  right: -4px;
+  top: -4px;
+}
+$bottle-height: calc(100% - 20px);
+$warning-tv: #8f49f1;
+
+.tv-rule {
+  position: relative;
+  float: left;
+  width: 170px;
+  height: 100%;
+  margin: 0 10px;
+  overflow: hidden;
+  box-shadow: 3px 0 5px #999;
+
+  &::before {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    content: ' ';
+    height: 100%;
+    width: 30px;
+    background-size: 100% $bottle-height;
+    background-repeat: no-repeat;
+    background-image: url('/infusion/app/assets/images/components/role_left.png');
+  }
+
+  &::after {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    content: ' ';
+    height: 100%;
+    width: 30px;
+    background-size: 100% $bottle-height;
+    background-repeat: no-repeat;
+    background-image: url('/infusion/app/assets/images/components/role_right.png');
+  }
+
+  .top-vol {
+    color: $base-color;
+    font-size: 14px;
+    top: 6px;
+    padding-left: 32px;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  & > div {
+    position: absolute;
+    //top: 240px;
+    text-align: center;
+    width: 100%;
+    //font-size: 32px;
+    font-size: 54px;
+    font-weight: bold;
+    padding: 0 0.7em 0 0.5em;
+    line-height: 1;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .top-list {
+    color: $warning-tv;
+    top: 10px;
+    height: calc((100% - 20px) / 3);
+  }
+
+  .middle-list {
+    color: $warning-tv;
+    top: calc((100% - 20px) / 3 * 1 + 10px);
+    height: calc((100% - 20px) / 3);
+  }
+
+  .bottom-list {
+    color: $danger-tv;
+    top: calc((100% - 20px) / 3 * 2 + 10px);
+    height: calc((100% - 20px) / 3);
+  }
+
+  .inner-wrap {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    .inner-item {
+      position: absolute;
+      padding: 0 2px;
+      width: 100%;
+      text-align: center;
+
+      &:nth-child(2n+1) {
+        //left: 0;
+      }
+
+      &:nth-child(2n) {
+        //right: 20px;
+      }
+    }
+  }
+}
+
+.rule-bedCode-wrap {
+  height: calc(100% - 20px);
+  bottom: 10px;
+
+  .inner-item {
+    position: absolute;
+    padding: 0 2px;
+    width: 88%;
+    text-align: center;
+  }
+}
+
+.infusion-cutline {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  background: url("/infusion/app/assets/images/business/cutline.png") center no-repeat;
+  background-size: contain;
+  width: 135px;
+  height: 111px;
+}
+
+.tv-logo-right {
+  width: 100%;
+  height: 20px;
+  background-position: center;
+  background: url('/infusion/app/assets/images/business/logo-header-white.png') no-repeat;
+}
+.canfor{
+  list-style-type: square;
+  height:100%;
+  line-height:20px;
+  padding:0;
+  margin:0;
+  li{
+    height:100%;
+    padding:0;
+    margin:0;
+    display:inline-block;
+    font-size:14px;
+    margin-left:20px;
+    .levelColor{
+      vertical-align:middle;
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      border-radius:50%;
+      margin-right:10px;
+    }
+  }
+}
+
+.slide-controls {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.slide-controls_item {
+  display: inline-block;
+  margin: 0 4px;
+  width: 12px;
+  height: 12px;
+  background: $gray;
+  border-radius: 50%;
+
+  &.active {
+    background: $base-color2;
+  }
+}
+
+.leave-call-wrap {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: #333;
+  z-index: 2099;
+  text-align: center;
+
+  &.only-leave {
+    background: transparent;
+  }
+}
+
+.leave-content {
+  margin: 5% 10px 0;
+  background: transparentize($danger-tv, .1);
+  display: inline-block;
+  font-size: 32px;
+  vertical-align: middle;
+  color: #fff;
+  border: 4px #fff solid;
+  line-height: 1.5;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.patient-leave_header {
+  background: #427abe;
+  color: #fff;
+  text-align: center;
+  height: 2em;
+  font-size: 32px;
+  line-height: 2em;
+}
+
+.map-bg {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  // z-index: 2099;
+  width: 96%;
+  height: calc(100% - 64px);
+  background-size: contain;
+  margin: 0 auto;
+
+  .map-marker {
+    display: none;
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    //font-size:
+  }
+}
+
+$spread-color1: #f04;
+$spread-color1-hover: #5b5b5b;
+$spread-color2: #f04;
+$spread-color3: #f04;
+
+$spread1-size: 16px;
+$spread2-size: 26px;
+$spread3-size: 36px;
+
+$spread1-offset: 1px;
+$spread2-offset: 6px;
+$spread3-offset: 11px;
+
+.border-spread {
+  position: relative;
+  float: left;
+  width: 15px;
+  height: 15px;
+}
+
+.border-spread__item {
+  position: absolute;
+  border-radius: 50%;
+  &.spread-1 {
+    width: $spread1-size;
+    height: $spread1-size;
+    z-index: 3;
+    top: $spread3-offset;
+    left: $spread3-offset;
+    background: #f04;
+  }
+  &.spread-2 {
+    width: $spread2-size;
+    height: $spread2-size;
+    z-index: 2;
+    top: $spread2-offset;
+    left: $spread2-offset;
+    // display: none;
+    background: #f04;
+    animation: spread2 0.6s infinite ease;
+  }
+  &.spread-3 {
+    width: $spread3-size;
+    height: $spread3-size;
+    z-index: 1;
+    top: $spread1-offset;
+    // display: none;
+    left: $spread1-offset;
+    background: #f04;
+    animation: spread3 0.6s 0.2s infinite
+  }
+}
+
+
+.spread {
+  display: block;
+  width: 36px;
+  height: 36px;
+  position: relative;
+  background: $spread-color2;
+  border-radius: 50%;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+}
+
+.spread__item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: $spread-color2;
+  border-radius: 50%;
+
+  animation-name: pointScale;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps();
+}
+
+.tv-rule .vol-text {
+  position: absolute;
+  font-size: 14px;
+  text-align: left;
+  font-weight: normal;
+  padding-left: 32px;
+  color: #48637d;
+}
+
+.medium-vol {
+  top: 33%;
+}
+
+.bottom-vol {
+  top: 65%;
+}
+
+.bedCardWrap{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  top:0;
+  left:0;
+  text-align:center;
+  z-index:9999;
+  overflow: hidden;
+  .bedCard{
+    margin:0 auto;
+    margin-top:250px;
+    padding:5px;
+    width:320px;
+    height:320px;
+    background-color:#EF4F4F;
+    border:5px #fff solid;
+    box-shadow:0 0 10px #999;
+    color:#fff;
+    font-size:2rem;
+    font-weight:bold;
+    position:relative;
+    .bottomText{
+      bottom:0;
+      width:100%;
+      position:absolute;
+      text-align:center;
+      p{
+        font-size:4rem;
+        font-weight:normal;
+        opacity:0.5;
+      }
+    }
+  }
+}
+
+
+// 动画开始
+@keyframes spread3 {
+  0% {
+    background: $spread-color3;
+    width: $spread2-size;
+    height: $spread2-size;
+    left: $spread2-offset;
+    top: $spread2-offset;
+  }
+  100% {
+    background: transparent;
+    width: $spread3-size;
+    height: $spread3-size;
+    left: $spread1-offset;
+    top: $spread1-offset;
+  }
+}
+
+@keyframes spread2 {
+  0% {
+    background: $spread-color2;
+    width: $spread1-size;
+    height: $spread1-size;
+    left: $spread3-offset;
+    top: $spread3-offset;
+  }
+  100% {
+    background: transparent;
+    width: $spread2-size;
+    height: $spread2-size;
+    left: $spread2-offset;
+    top: $spread2-offset;
+  }
+}
+
+@keyframes pointScale {
+  0% {
+    transform: scale(1);
+    opacity: .6;
+  }
+
+  50% {
+    transform: scale(8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+  
+@media screen and (max-width:1200px){
+  .canfor{
+    list-style-type: square;
+    height:100%;
+    line-height:20px;
+    padding:0;
+    margin:0;
+    li{
+      height:100%;
+      padding:0;
+      margin:0;
+      display:inline-block;
+      font-size:7px;
+      margin-left:10px;
+      .levelColor{
+        vertical-align:middle;
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        border-radius:50%;
+        margin-right:5px;
+      }
+    }
+  }
+  .infusion-cutline {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    background: url("/infusion/app/assets/images/business/cutline.png") center no-repeat;
+    background-size: contain;
+    width: 68px;
+    height: 55px;
+  }
 }

@@ -1,168 +1,162 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import store from './vuex/store'
-import App from './App'
-import router from './router'
-import Resource from 'vue-resource'
-import ElementUI from 'Element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import 'font-awesome-sass/assets/stylesheets/_font-awesome.scss'
-
+import Vue from 'vue';
 import {
-  Pagination,
-  Dialog,
-  Autocomplete,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Menu,
-  Submenu,
-  MenuItem,
-  MenuItemGroup,
+  Message,
+  Loading,
+  Form,
+  FormItem,
   Input,
-  InputNumber,
-  Radio,
-  RadioGroup,
-  RadioButton,
-  Checkbox,
-  CheckboxButton,
-  CheckboxGroup,
-  Switch,
   Select,
   Option,
-  OptionGroup,
-  Button,
-  ButtonGroup,
+  Radio,
+  RadioButton,
+  RadioGroup,
+  Checkbox,
   Table,
   TableColumn,
   DatePicker,
-  TimeSelect,
-  TimePicker,
-  Popover,
-  Tooltip,
-  Breadcrumb,
-  BreadcrumbItem,
-  Form,
-  FormItem,
+  Switch,
+  Button,
+  Card,
   Tabs,
   TabPane,
-  Tag,
-  Tree,
-  Alert,
-  Slider,
-  Icon,
-  Row,
+  Dialog,
+  Pagination,
+  Menu,
   Col,
-  Upload,
-  Progress,
-  Badge,
-  Card,
-  Rate,
-  Steps,
-  Step,
-  Carousel,
-  CarouselItem,
-  Collapse,
-  CollapseItem,
-  Cascader,
-  ColorPicker,
-  Transfer,
-  Container,
-  Header,
-  Aside,
-  Main,
-  Footer,
-  Loading,
-  MessageBox,
-  Message,
-  Notification
-} from 'element-ui'
+  Row,
+  Submenu,
+  Tag,
+  MenuItem
+} from 'element-ui';
+import VueResource from 'vue-resource';
+import 'element-ui/lib/theme-default/index.css';
+import auth from '@/auth';
+import '@/style/index.scss';
+import VueRouter from 'vue-router';
+import * as CONST from '@/const';
 
-Vue.use(Pagination)
-Vue.use(Dialog)
-Vue.use(Autocomplete)
-Vue.use(Dropdown)
-Vue.use(DropdownMenu)
-Vue.use(DropdownItem)
-Vue.use(Menu)
-Vue.use(Submenu)
-Vue.use(MenuItem)
-Vue.use(MenuItemGroup)
-Vue.use(Input)
-Vue.use(InputNumber)
-Vue.use(Radio)
-Vue.use(RadioGroup)
-Vue.use(RadioButton)
-Vue.use(Checkbox)
-Vue.use(CheckboxButton)
-Vue.use(CheckboxGroup)
-Vue.use(Switch)
-Vue.use(Select)
-Vue.use(Option)
-Vue.use(OptionGroup)
-Vue.use(Button)
-Vue.use(ButtonGroup)
-Vue.use(Table)
-Vue.use(TableColumn)
-Vue.use(DatePicker)
-Vue.use(TimeSelect)
-Vue.use(TimePicker)
-Vue.use(Popover)
-Vue.use(Tooltip)
-Vue.use(Breadcrumb)
-Vue.use(BreadcrumbItem)
-Vue.use(Form)
-Vue.use(FormItem)
-Vue.use(Tabs)
-Vue.use(TabPane)
-Vue.use(Tag)
-Vue.use(Tree)
-Vue.use(Alert)
-Vue.use(Slider)
-Vue.use(Icon)
-Vue.use(Row)
-Vue.use(Col)
-Vue.use(Upload)
-Vue.use(Progress)
-Vue.use(Badge)
-Vue.use(Card)
-Vue.use(Rate)
-Vue.use(Steps)
-Vue.use(Step)
-Vue.use(Carousel)
-Vue.use(CarouselItem)
-Vue.use(Collapse)
-Vue.use(CollapseItem)
-Vue.use(Cascader)
-Vue.use(ColorPicker)
-Vue.use(Container)
-Vue.use(Header)
-Vue.use(Aside)
-Vue.use(Main)
-Vue.use(Footer)
+import 'font-awesome-sass/assets/stylesheets/_font-awesome.scss'
 
-Vue.use(Loading.directive)
+// import Raven from 'raven-js';
+// import RavenVue from 'raven-js/plugins/vue';
 
-Vue.prototype.$loading = Loading.service
-Vue.prototype.$msgbox = MessageBox
-Vue.prototype.$alert = MessageBox.alert
-Vue.prototype.$confirm = MessageBox.confirm
-Vue.prototype.$prompt = MessageBox.prompt
-Vue.prototype.$notify = Notification
-Vue.prototype.$message = Message
+import {router} from './router/router.js';
 
-Vue.use(Resource)
+Vue.use(VueRouter);
+Vue.use(Dialog);
+Vue.use(Col);
+Vue.use(Row);
+Vue.use(VueResource);
+Vue.use(Loading);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Input);
+Vue.use(Select);
+Vue.use(Option);
+Vue.use(Radio);
+Vue.use(RadioButton);
+Vue.use(RadioGroup);
+Vue.use(Checkbox);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(DatePicker);
+Vue.use(Switch);
+Vue.use(Button);
+Vue.use(Tabs);
+Vue.use(TabPane);
+Vue.use(Pagination);
+Vue.use(Card);
+Vue.use(Menu);
+Vue.use(Submenu);
+Vue.use(Tag);
+Vue.use(MenuItem);
 
+// import ('font-awesome-sass/assets/stylesheets/font-awesome/_font-awesome.scss')
+// require('font-awesome')
+require('@/directives/battery/index.js');
+require('@/directives/focus/index.js');
 
+// Raven
+// .config('https://0accec47ac6e4b878cafac0336e199b1@sentry.io/221492')
+// .addPlugin(RavenVue, Vue)
+// .install();
 
-Vue.config.productionTip = false
+// 拦截器
+Vue.http.interceptors.push((request, next) => {
+  // 检查是否已登录
+  // 未登录则跳转至登录页
+  if (!auth.checkAuth() && ['login', 'autoLogin'].indexOf(router.currentRoute.name) < 0 && request.url.indexOf('getInfusionWards') < 0) {
+    router.push({path: '/login'});
+    return;
+  }
+  const method = request.method;
+  debugger; // eslint-disable-line no-debugger, no-restricted-syntax
+  next(response => {
+    // debugger; // eslint-disable-line no-debugger, no-restricted-syntax
+    if (!response.body) {
+      return;
+    }
+    const resCode = response.body.rslt;
+    let isShowError = true;
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
+    switch (resCode) {
+      case '0':
+        console.log('请求成功！');
+        // post 请求弹出响应信息
+        if (method === 'POST') {
+          if (response.body.msg) {
+            Message({message: response.body.msg, type: 'success'});
+          }
+        }
+        break;
+
+      case '-1':
+        // 有些失败的请求不显示失败信息
+        if (Array.isArray(CONST.NO_ERROR_MESSAGE_PATH)) {
+          for (let i = 0; i < CONST.NO_ERROR_MESSAGE_PATH.length; i += 1) {
+            if (response.url.indexOf(CONST.NO_ERROR_MESSAGE_PATH[i]) > -1) {
+              isShowError = false;
+              break;
+            }
+          }
+        }
+        if (isShowError) {
+          Message({
+            message: response.body.msg || '请求失败！',
+            type: 'error'
+          });
+        }
+        response.body = null;
+        break;
+        // TODO 缺少会话超时的情况
+      default:
+        // debugger; // eslint-disable-line no-debugger, no-restricted-syntax
+        if (response.url.indexOf('getAlarmStatus') === -1 && response.status !== 200) {
+          Message({
+            message: response.body.msg || '请求失败，请检查网络设置或联系管理员！',
+            type: 'error'
+          });
+          response.body = null;
+        }
+    }
+  });
+});
+
+export default new Vue({
+  el: '#root',
   router,
-  store,
-  template: '<App/>',
-  components: { App }
-})
+  created() {
+    if (!auth.getToken()) {
+      return;
+    }
+    this.$http.get(`${CONST.PATH}/getInfusionWards`).then(response => {
+      if (response.body) {
+        this.deptList = response.body.data.list || [];
+      }
+    });
+  },
+  data() {
+    return {token: auth.getToken(), deptList: []};
+  },
+  render: h => h('router-view')
+});

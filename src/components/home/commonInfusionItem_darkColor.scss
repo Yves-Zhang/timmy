@@ -1,0 +1,292 @@
+@import "../../style/variable";
+	.darkColorouterWarp{
+		height:135px;
+		position:relative;
+		cursor: pointer;
+		box-sizing: border-box;
+		padding:5px;
+		background-color:#999999;
+		.content{
+			height:100%;
+			// border:2px #17ACFF solid;
+			background-color:#2D5E99;
+			.justBedNumberBox{
+				position:relative;
+				height:100%;
+				display:block;
+				font-size:6rem;
+				padding-top:1rem;
+				font-weight:bold;
+				text-align:center;
+				color:#CF1973;
+				.materials{
+					position:absolute;
+					font-size:0.8rem;
+					right:05px;
+					top:05px;
+					width:1.2rem;
+					height:1.2rem;
+					color:#fff;
+					text-align:center;
+					line-height:1.2rem;
+					border-radius:50%;
+					border:2px #fff solid;
+				}
+			}
+			.alias-code {
+			  position: absolute;
+			  color: #20a0ff;
+			  font-weight: bold;
+			  font-size: 14px;
+			  bottom: 8%;
+			  left: 50%;
+			  transform: translateX(-50%);
+			  z-index: 98;
+			}
+			.bedNumberBox{
+				background-color:#082F4E;
+				color:#fff;
+				display:flex;
+				height:2rem;
+				line-height:2rem;
+				.bedNumber{
+					display:inline-block;
+					flex:1;
+					text-align:center;	
+					font-size:2rem;		
+					font-weight:bold;			
+				}
+				.hospitalNo{
+					display:inline-block;
+					flex:3;
+					text-align:center;
+					font-size:1rem;
+				}
+			}
+			.detail{
+				position:relative;
+				height:calc( 100% - 2rem);
+				display:flex;
+				.infusionBagBox{
+					flex:1;
+					height:calc( 100% - 4px);
+					padding:2px;
+					.alarmBed{
+						animation: flicker 0.5s linear 2s infinite alternate;
+					}
+					.infusionBag{
+						background-color:#fff;
+						position:relative;
+						height:100%;
+						// border:2px #fff solid;
+						border-radius:6px;
+						box-shadow:0 0 4px #999;
+						overflow:hidden;
+						.remainFluid{
+							position:absolute;
+							bottom:0;
+							width:100%;
+							background:#A6D5FF;
+						}
+						.materials{
+							position:absolute;
+							font-size:1rem;
+							right:0;
+							top:0;
+							width:1.2rem;
+							height:1.2rem;
+							color:#fff;
+							text-align:center;
+							line-height:1.2rem;
+							border-radius:50%;
+							border:2px #fff solid;
+						}
+						.tips-icon{	
+							position: absolute;
+  							top: 2px;
+  							left:5px;
+  							.tips-icon-img{
+  								height:1.2rem;
+  								width:auto;
+  							}
+						}
+						.remainFluidText{
+							font-size:1rem;
+							position:absolute;
+							bottom:5px;
+							width:100%;
+							text-align:center;
+							z-index:999;
+							color:#464646;
+							.remain{
+								font-size:1.2rem;
+								font-weight:bold;
+							}
+							.line{
+								margin:0 auto;
+								width: 80%;
+								height:1px;
+								border:none;
+								border-top:1px solid #6C737D;
+							}
+							.speedAlarm{
+								display: inline-block;
+								height:22px;
+								background: url('/infusion/app/assets/images/components/bottle-begin.png') no-repeat;
+								background-size: auto 100%;
+								background-position: 0 0;
+								padding-left:15px;
+							}
+						}
+					}
+				}
+				
+				.textDebailBox{
+					position:relative;
+					flex:2;
+					height:100%;
+					padding:5px;
+					color:#fff;
+					.textDebail{
+						.patient-detail{
+							font-size:0.8rem
+						}
+						.patient__name{
+							font-size:1.2rem;
+							font-weight:bold;
+						}
+						.male,.female{
+							font-size:0.8rem;
+							color:#fff;
+						}
+						.diagnosisDetails{
+						}
+						.operationInfo{
+							margin-top:0.2rem;
+							span{
+								color:#FFF;
+								font-size:0.8rem;
+								line-height:0.8rem;
+								font-weight:bold;
+							}
+						}
+						.tendLevel{
+							font-size:1.5rem;
+						}
+					}
+				}
+			}
+		}
+		.content{
+					/* **********************************输液状态******************************** */
+				/* 冲洗输液管 */
+			  &.wash {
+			    .bottleState {
+			      background: url('/infusion/app/assets/images/components/bottle-wash.png') center no-repeat;
+			      background-size:50%;
+			    }
+			  }
+			  /* 暂停输液 */
+			  &.suspend {
+			    .bottleState {
+			      background: url('/infusion/app/assets/images/components/bottle-suspend.png') center no-repeat;
+			      background-size:30%;
+			    }
+			  }
+			  /* 离开 */
+			  &.leave {
+			    .bottleState {
+			      background: url('/infusion/app/assets/images/components/bottle-leave.png') center no-repeat;
+			      background-size:50%;
+			    }
+			  }
+			  /* 剩余液量低于6ml */
+			  &.alarm--rest-0 {
+			    .just-show-bedCode {
+			      .patient_bedCode {
+			        transform-origin: center!important;
+			      }
+			    }
+			    .bottleState {
+			      background: url('/infusion/app/assets/images/components/bottle-leave.png') center no-repeat;
+			      background-size: 50%;
+			    }
+			  }
+			  /* 等待 */
+			  &.waiting {
+			    .bottleState {
+			      background: url('/infusion/app/assets/images/components/bottle-wait.png') center no-repeat;
+			      background-size:50%;
+			    }
+			  }
+			  /* 等待开启 */
+			  &.waitingStart {
+			    .bottleState {
+			      background: url('/infusion/app/assets/images/components/bottle-waitingStart.png') center no-repeat;
+			      background-size:50%;
+			    }
+			  }
+			  /* 未匹配 */
+			  &.unmatch {
+			    .bottleState {
+			      background: url('/infusion/app/assets/images/components/bottle-unmatch.png') center no-repeat;
+			      background-size:50%;
+			    }
+			  }
+			  /* 开始输液 */
+			  &.begin {
+			    .bottleState {
+			      background: url('/infusion/app/assets/images/components/bottle-begin.png') center no-repeat;
+			      background-size:50%;
+			    }
+			  }
+			  /* 剩余液量二级报警 */
+			  &.alarm--rest-3 {
+			    .bottleState {
+			    	.remainFluid{
+			    		background: #bf9bf2!important;
+			    	}
+			      
+			    }
+			  }
+			  /* 显示空床位时，显示空瓶 */
+			  &.empty-bottle {
+			    .bottleState {
+			      background: transparent;
+			    }
+			    .bottle-container {
+			      background: transparent;
+			      &:before {
+			        background: url('/infusion/app/assets/images/svg/bottle-empty.svg') no-repeat;
+			        width: 56px;
+			        height: 80px;
+			        opacity: 0.5;
+			      }
+			    }
+			  }
+			  /* 滴速报警 */
+			  &.alarm-speed {
+			    .bottleState {
+			      	.remainFluid{
+			    		background: #f6d099!important;
+			    	}
+			    	.speed{
+			    		color:red;
+			    	}
+			    }
+
+			    .drop-speed-num {
+			      font-size: 12px;
+			      color: $danger-tv;
+			    }
+			  }
+			  /* **********************************输液状态结束******************************** */
+		}
+	}
+
+	@-webkit-keyframes flicker /* Safari 和 Chrome */
+	{
+		from {box-shadow:0 0 20px #F85982;}
+		to {box-shadow:0 0 0 #fff;}
+	}
+

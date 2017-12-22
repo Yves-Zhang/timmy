@@ -1,0 +1,150 @@
+@import "../../style/variable.scss";
+
+.infusion-nav {
+  .el-menu-item {
+    a {
+      display: block;
+    }
+  }
+}
+
+.header {
+  @include clearfix();
+  height: 70px;
+  color: #FFFFFF;
+  background: linear-gradient(to bottom, #4e6b87 50%, #425b73 100%);
+}
+
+.header-top-white {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 30px;
+  width: 50%;
+  background-color: #fff;
+}
+
+.logo {
+  width: 26%;
+  height: 70px;
+  font-size: 2rem;
+  line-height: 70px;
+}
+
+.header-right {
+  width: 74%;
+
+  .header-top {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    color: $font-color;
+    padding-left: 10px;
+    background: #fff;
+
+    .fa {
+      color: darken($gray-light, 10%);
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: -30px;
+      content: ' ';
+      width: 0;
+      height: 0;
+      border-right: 15px solid #FFFFFF;
+      border-top: 15px solid #FFFFFF;
+      border-left: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+    }
+
+    .oi {
+      color: $gray;
+    }
+
+    & > div,
+    & > span {
+      margin: 0 20px 0 0;
+    }
+  }
+}
+
+#logout {
+  cursor: pointer;
+}
+
+.logo-header {
+  position: absolute;
+  height: 30px;
+  right: 10px;
+  top: 4px;
+  width: 210px;
+  background: url('/infusion/app/assets/images/business/logo-header.png') no-repeat;
+
+  .tv & {
+    background: url('/infusion/app/assets/images/business/logo-header-white.png') no-repeat;
+  }
+}
+
+.infusion-nav {
+  background: transparent!important;
+
+  .el-menu-item,
+  .el-submenu,
+  .el-submenu__title {
+    color: $gray-light;
+    line-height: 40px!important;
+    height: 40px!important;
+  }
+
+  & > .el-menu-item {
+    & > a {
+      color: $gray-light!important;
+
+      &:hover {}
+    }
+
+    &:hover  {
+      background-color: transparent;
+    }
+  }
+
+  .el-submenu__title {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .el-submenu > .el-menu {
+    top: 40px;
+    z-index: 1000;
+  }
+
+  .tv-item {
+    float: right!important;
+  }
+}
+
+.active-menu {
+  .el-submenu__title {
+    border-bottom: 5px solid $info!important;
+  }
+  .active-menu-item {
+    a {
+      color: $info!important;
+      font-weight: bold;
+    }
+  }
+}
+
+.el-submenu .el-menu-item{
+  min-width:inherit;
+}
+.el-menu--horizontal .el-menu-item a, {
+  color:#475669
+}
+.el-menu--horizontal .el-menu-item a:hover{
+  color:$info;
+}

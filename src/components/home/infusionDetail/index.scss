@@ -1,0 +1,51 @@
+@import "../../../style/variable";
+
+.chart-wrap {
+  overflow-x: scroll;
+}
+
+.line-speed {
+  fill: none;
+  stroke: $base-color3;
+  stroke-width: 2px;
+}
+
+.line-capacity {
+  fill: none;
+  stroke: $base-color2;
+  stroke-width: 2px;
+}
+
+.infusion-process {
+  margin: 10px 0;
+  line-height: 250%;
+  height: 30px;
+  position: relative;
+  border: 1px #ddd solid;
+
+  & > span {
+    position: absolute;
+    color: $base-color2;
+  }
+}
+
+#infusion-process__start-time {
+  left: 10px;
+}
+
+#infusion-process__end-time {
+  right: 10px;
+}
+
+.infusion-process_bar {
+  position: absolute;
+  height: 100%;
+  background: linear-gradient(to right, #fff, #b3defa);
+}
+
+.infusion-process__num {
+  color: $base-color;
+  margin-right: 6px;
+  left: 49%;
+  position: absolute;
+}

@@ -1,0 +1,27 @@
+.el-table {
+  font-size: 12px;
+
+  .el-tooltip {
+    display: inline-block;
+  }
+}
+.el-table .cell, .el-table th > div {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.el-table td, .el-table th {
+  height: 36px;
+}
+.el-table th > .cell {
+  line-height: 34px;
+}
+
+
+.table-pagination {
+  margin: 10px 0 0 0;
+  float: right;
+}
+
+.el-table__fixed, .el-table__fixed-right {
+  z-index: 100;
+}

@@ -1,0 +1,319 @@
+@import "../../style/variable";
+
+.infusion-item {
+  flex: 0 1 16.667%;
+}
+
+.infusion-item-wrap {
+  padding: 5px;
+  box-sizing: border-box;
+  height: 130px;
+  cursor: pointer;
+  overflow: hidden;
+
+  &:hover {
+    .monitor-bottle {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.item-inner-wrap {
+  display: flex;
+  height: 100%;
+  position: relative;
+  background: #bdbdbd;
+}
+
+.item_patientInfo {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  flex: 1;
+
+  .waggle {
+    right: 22px;
+  }
+
+  .patient-detail {
+    position: absolute;
+    bottom: .8em;
+    left: .8em;
+    line-height: initial;
+  }
+}
+
+.item_monitor-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &.no-capacity:before {
+    display: block;
+    content: ' ';
+  }
+}
+
+.patient_bedCode {
+  position: absolute;
+  padding: 0 0.3em;
+  left: 0;
+  top: 0;
+  font-size: 16px;
+  color: #fff;
+  background: $info;
+  font-weight: bold;
+  margin-top: 0!important;
+  transform-origin: left top !important;
+}
+
+.monitor-capacity {
+  text-align: center;
+  padding-bottom: .4em;
+  transform-origin: top;
+  margin-top: 0!important;
+  color: $base-color;
+}
+
+.patient__sex {
+  &.male {
+    color: #1168a8;
+  }
+
+  &.female {
+    color: $danger-tv;
+  }
+}
+
+.monitor-bottle {
+  transition: all 0.2s ease-in-out;
+  transform-origin: bottom;
+  margin-bottom: 4px;
+}
+
+.patient__admit-date {
+  display: block;
+  transform: scale(0.75);
+  transform-origin: left;
+  white-space: nowrap;
+}
+
+.bottle-container {
+  position: relative;
+  width: 50px;
+  height: 78px;
+  margin: 0 auto;
+  text-align: center;
+  background: #F3F8FF;
+
+  &:before {
+    position: absolute;
+    content: ' ';
+    left: -1px;
+    top: -1px;
+    background: url('/infusion/app/assets/images/svg/bottle-line.svg') no-repeat;
+    width: 56px;
+    height: 80px;
+    background-size: contain;
+    z-index: 101;
+  }
+}
+
+.bottle-rest-vol {
+  position: absolute;
+  height: 70px;
+  bottom: 6px;
+  left: 0;
+  width: 50px;
+  background: #a6d6ff;
+  z-index: 100;
+
+  &.none-vol {
+    background: #F3F8FF;
+    background-position: center;
+  }
+}
+
+.bottle_text {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  right: 0;
+  bottom: 0;
+  z-index: 102;
+  padding: 12px 0 10px;
+  // font-weight: bold;
+  color: $base-color;
+}
+
+.tv-patient-name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.monitor_rest-capacity {
+  padding-bottom: 6px;
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: ' ';
+    display: block;
+    bottom: 0;
+    left: 9px;
+    width: 60%;
+    background: $base-color;
+    height: 1px;
+  }
+}
+
+.tips-icon {
+  position: absolute;
+  top: 4px;
+
+  &.coulometer {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.tips-startFlag {
+  position: absolute;
+  top: 6px;
+  border-radius: 50%;
+  right: 6px;
+  background: transparent;
+
+
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  line-height: 16px;
+
+  border: 2px solid #999;
+  font-size: 12px;
+  color: white;
+}
+
+.monitor_rest-time {
+  padding-top: 6px;
+}
+
+.scale-xy {
+  transform-origin: left top;
+}
+/* **********************************输液状态******************************** */
+.infusion-item-wrap {
+  /* 冲洗输液管 */
+  &.wash {
+    .bottle-rest-vol {
+      background: url('/infusion/app/assets/images/components/bottle-wash.png') center no-repeat;
+    }
+  }
+  /* 暂停输液 */
+  &.suspend {
+    .bottle-rest-vol {
+      background: url('/infusion/app/assets/images/components/bottle-suspend.png') center no-repeat;
+    }
+  }
+  /* 离开 */
+  &.leave {
+    .bottle-rest-vol {
+      background: url('/infusion/app/assets/images/components/bottle-leave.png') center no-repeat;
+      background-size: 60%;
+    }
+  }
+  /* 剩余液量低于6ml */
+  &.alarm--rest-0 {
+    .just-show-bedCode {
+      .patient_bedCode {
+        transform-origin: center!important;
+      }
+    }
+
+    .patient_bedCode {
+      position: static;
+      color: #cf1973;
+      font-size: 64px;
+      padding: 0;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+    }
+
+    .bottle-rest-vol {
+      background: url('/infusion/app/assets/images/components/bottle-leave.png') center no-repeat;
+      background-size: 60%;
+    }
+  }
+  /* 等待 */
+  &.waiting {
+    .bottle-rest-vol {
+      background: url('/infusion/app/assets/images/components/bottle-wait.png') center no-repeat;
+    }
+  }
+  /* 等待开启 */
+  &.waitingStart {
+    .bottle-rest-vol {
+      background: url('/infusion/app/assets/images/components/bottle-waitingStart.png') center no-repeat;
+    }
+  }
+  /* 未匹配 */
+  &.unmatch {
+    .bottle-rest-vol {
+      background: url('/infusion/app/assets/images/components/bottle-unmatch.png') center no-repeat;
+    }
+  }
+  /* 开始输液 */
+  &.begin {
+    .bottle-rest-vol {
+      background: url('/infusion/app/assets/images/components/bottle-begin.png') center no-repeat;
+    }
+  }
+  /* 剩余液量二级报警 */
+  &.alarm--rest-3 {
+    .bottle-rest-vol {
+      background: #bf9bf2;
+    }
+  }
+  /* 显示空床位时，显示空瓶 */
+  &.empty-bottle {
+    .bottle-rest-vol {
+      background: transparent;
+    }
+    .bottle-container {
+      background: transparent;
+      &:before {
+        background: url('/infusion/app/assets/images/svg/bottle-empty.svg') no-repeat;
+        width: 56px;
+        height: 80px;
+        opacity: 0.5;
+      }
+    }
+  }
+  /* 滴速报警 */
+  &.alarm-speed {
+    .bottle-rest-vol {
+      background: #f6d099;
+    }
+
+    .drop-speed-num {
+      font-size: 12px;
+      color: $danger-tv;
+    }
+  }
+}
+
+.alias-code {
+  position: absolute;
+  color: #20a0ff;
+  font-weight: bold;
+  font-size: 14px;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 98;
+}

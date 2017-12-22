@@ -1,0 +1,29 @@
+.el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item.is-active, .el-menu-item.is-active {
+  a {
+    color: #20A0FF;
+  }
+}
+
+.text-primary {
+  color: $primary;
+}
+
+.text-info {
+  color: $info;
+}
+
+.text-warning {
+  color: $warning;
+}
+
+.text-danger {
+  color: $danger;
+}
+
+.text-success {
+  color: $success;
+}
+
+.text-gray {
+  color: $gray;
+}

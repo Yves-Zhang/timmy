@@ -1,0 +1,68 @@
+@import "./_variable";
+.input-round {
+  .el-input__inner {
+    border-radius: 36px;
+  }
+}
+.el-input.is-danger {
+  .el-input__inner {
+    border: 1px $danger solid;
+  }
+}
+
+.filter-wrap {
+  margin-bottom: 10px;
+  .el-form-item {
+    margin-bottom: 0;
+  }
+  .el-form-item__content {
+    line-height: 30px!important;
+  }
+}
+
+.el-form-item__content {
+  line-height: 34px!important;
+}
+
+.small-picker {
+  height: 30px;
+  line-height: 30px;
+  .el-date-editor__editor {
+    height: 30px;
+  }
+
+  .el-icon {
+    line-height: 30px;
+  }
+}
+
+.el-form {
+  .block-title {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.el-form-item__error {
+  top: 90%;
+  width: 300%;
+}
+
+.el-form-item__label {
+  font-size: 12px;
+}
+
+.el-switch__label, .el-switch__label * {
+  font-size: 12px;
+}
+
+.form-ctr {
+  transition: all .2s;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+select {
+  height: 26px;
+}

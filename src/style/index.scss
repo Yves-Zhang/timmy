@@ -1,0 +1,64 @@
+@import './variable';
+@import './fonts';
+@import './layout';
+@import './form';
+@import './tabs';
+@import './card';
+@import './table';
+@import './dialog';
+@import './color';
+html, body, #root {
+  margin: 0;
+  height: 100%;
+  font: 12px "微软雅黑",tahoma,arial,'Hiragino Sans GB', '\5b8b\4f53',sans-serif;
+  color: $font-color;
+}
+
+body, h1, h2, h3 {
+  font-weight: 300
+}
+
+dl, dt, dd {
+  margin: 0;
+}
+
+body {
+  background-color: #eef0f3;
+  text-size-adjust: 100% !important; 
+}
+
+a {
+  color: #475669;
+  text-decoration: none;
+
+  &:hover {
+    color: $info;
+  }
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.el-loading-mask {
+  z-index: 999;
+}
+
+.el-date-picker {
+  z-index: 10000!important;
+}
+
+.el-button {
+  font-family: "微软雅黑";
+}
+
+.el-loading-mask {
+  z-index: 9999;
+}

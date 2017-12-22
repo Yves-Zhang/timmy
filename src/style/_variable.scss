@@ -1,0 +1,65 @@
+// 颜色设置 setting
+//
+$base-color:              #48637d !default;
+$base-color2:             #00CCFF !default;
+$base-color3:             #5eb104 !default;
+$bottle-bg:               #F3F8FF !default;
+$toolbar-color:           #E0E4E8 !default;
+$alarm-leve2:             #F55B84 !default;
+$alarm-leve1:             #d9534f !default;
+$alarm-leve3:             $base-color2 !default;
+
+$primary:                 $base-color;
+$success:                 #13CE66 !default;
+$info:                    #20A0FF !default;
+$warning:                 #F7BA2A !default;
+$danger:                  #FF4949 !default;
+$danger-tv:               #cf1973 !default;
+
+$silver-lighter:          #C0CCDA !default;
+$silver-light:            #99A9BF !default;
+$silver:                  #8492A6 !default;
+
+// 灰度颜色设置
+//
+$font-color:             #333 !default;
+$gray:                   #D3DCE6 !default;
+$gray-light:             #E5E9F2 !default;
+$gray-lighter:           #EFF2F7 !default;
+$dark-white:             #F9FAFC !default;
+
+
+//
+//屏幕断点
+//
+$XS:                             400px;
+$S:                              800px;
+$N:                              1366px;
+$L:                              1600px;
+$XL:                             1920px;
+
+@mixin MQ($width) {
+  @if $width == $S {
+    @media only screen and (min-width: $S) and (max-width: $N - 1) { @content; }
+  }
+  @else if $width == $N {
+    @media only screen and (min-width: $N) and (max-width: $L - 1) { @content; }
+  }
+  @else if $width == $L {
+    @media only screen and (min-width: $L) and (max-width: $XL - 1) { @content; }
+  }
+  @else if $width == $XL {
+    @media only screen and (min-width: $XL) { @content; }
+  }
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}

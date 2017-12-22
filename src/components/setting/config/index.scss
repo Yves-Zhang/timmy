@@ -1,0 +1,27 @@
+@import "../../../style/variable";
+
+.spark {
+  .el-switch__core {
+    animation: spark 2s infinite ease!important;
+  }
+}
+
+@keyframes spark {
+  0% {
+    box-shadow: 0 0 0 $danger;
+    border-color: transparentize($danger, .5);
+    background-color: transparentize($danger, .5);
+  }
+
+  50% {
+    box-shadow: 0 0 10px $danger;
+    background-color: $danger;
+    border-color: $danger
+  }
+
+  100% {
+    box-shadow: 0 0 0 $danger;
+    background-color: transparentize($danger, .5);
+    border-color: transparentize($danger, .5);
+  }
+}
